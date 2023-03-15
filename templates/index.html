@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Boggle Game</title>
+    <link rel="stylesheet" href="/static/boggle.css"/>
 </head>
 <body>
     <h1> Let's Play Boggle</h1>
@@ -18,10 +19,46 @@
         </tr>
         {% endfor %}
     </table>
-  
+    <!-- Create a score-board with timer, scores, and words already found -->
+    <div class="score-board">
+        <div class="timer">Time Left: <span class="seconds">60</span> Seconds</div>
+        <div class="score-div">Current Score:<span class="score"></span></div>
+        <div class="words-title">Found Words:</div>
+        <div class="words"></div>
+      </div>
+      <div class="guess">
+        <p class="message">
+        </p>
+        <!-- Form for user to submit a guess -->
+    <form class="form-guess">
+        <label for="word"> Guess a word: </label>
+        <input 
+        type="text"
+        id="word-guess"
+        class="word"
+        required
+        />
+        <button type="submit"> Submit Guess </button>
+    </form>
     </div>
-    
+    <div class="history">
+        <div class="history-title">Play History:</div>
+        <div class="history-content">
+            <ul>
+              {% for i in range(10 if history | length > 10 else history | length) %}
+                <li>{{ history[-1 - i].time }} : {{ history[-1 - i].score }}</li>
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+    </div>
+    <script
+      src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://unpkg.com/axios/dist/axios.js"></script>
+    <script src="/static/app.js"></script>
 
-    
 </body>
 </html>
